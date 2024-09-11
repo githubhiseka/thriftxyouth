@@ -4,7 +4,7 @@ def show_main(request):
     context = {
         'app_name': 'THRIFTxYouth',
         'name': 'Abhiseka Susanto',
-        'class': 'PBP C'
+        'class': 'C'
     }
 
     return render(request, "main.html", context)
