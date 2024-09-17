@@ -103,7 +103,10 @@ Saya pribadi lebih menyukai format JSON karena sintaks-nya yang lebih mudah diba
 
 **Jawab:**
 
-blbalbalbal
+Seperti namanya, method is_valid() mem-validasi suatu form pada aplikasi. Secara singkat, is_valid() akan mengecek ketentuan-ketentuan yang di-define pada field suatu form. Misalnya, jawaban pada suatu instansi EmailField(max_length=254) akan divalidasi oleh is_valid() untuk mengecek:
+* Apakah jawaban tersebut tergolong suatu email?
+* Apakah jawaban tersebut melebihi batas maksimal panjang huruf?
+Method is_valid() ini akan me-return suatu value boolean. Apabila True, akan dilanjutkan ke kondisi yang ditentukan, sementara apabila False akan dikirimkan error message ke dictionary .errors. 
 
 ---
 
