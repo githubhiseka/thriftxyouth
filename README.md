@@ -100,6 +100,7 @@ Saya pribadi lebih menyukai format JSON karena sintaks-nya yang lebih mudah diba
 Seperti namanya, method is_valid() mem-validasi suatu form pada aplikasi. Secara singkat, is_valid() akan mengecek ketentuan-ketentuan yang di-define pada field suatu form. Misalnya, input pada suatu instansi EmailField(max_length=254) akan divalidasi oleh is_valid() untuk mengecek:
 * Apakah input tersebut tergolong suatu email?
 * Apakah input tersebut melebihi batas maksimal panjang huruf?
+
 Setelah itu, is_valid() juga akan _clean_ data, semisal string '2022-07-30' akan dicek formatnya dan diubah menjadi suatu objek datetime.
 Method is_valid() ini akan me-return suatu value boolean. Apabila True, akan dilanjutkan ke kondisi yang ditentukan, sementara apabila False akan dikirimkan error message ke dictionary .errors
 Banyak sekali logika yang digunakan untuk mem-validasi data pada form dan sangatlah tidak praktis dan tidak fleksibel untuk men-define-nya sendiri menggunakan views. Maka dari itu, is_valid() sangat krusial untuk kelancaran suatu aplikasi.
