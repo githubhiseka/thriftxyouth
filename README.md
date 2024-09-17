@@ -76,35 +76,39 @@ Model Django dapat disebut sebagai Object Relational Mapping karena `models.py` 
 # Tugas 3
 
 
-- [x] ### Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+### 1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 
 **Jawab:**
 
 Data delivery penting bagi suatu web platform karena hampir semua aplikasi memerlukan pengiriman dan penerimaan data, seperti jumlah saldo pada e-commerce, login credential suatu aplikasi pelayanan, dan banyak lagi. Dalam sudut pandang user, kita ingin web yang mudah diakses, cepat, responsif, dan optimal tanpa memandang lokasi ataupun gawai yang digunakan. Developer juga harus mampu mendapatkan kepercayaan user pada segi keamanan data karena tak ada yang ingin data pribadinya terekspos ke penyerang-penyerang.
 
+---
 
-### Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+### 2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
 
 **Jawab:**
 
 Saya pribadi lebih menyukai format JSON karena sintaks-nya yang lebih mudah dibaca, apalagi berangkat dengan pengalaman menggunakan bahasa pemrograman Java. Namun, memang terdapat beberapa fakta yang menyebabkan JSON lebih sering digunakan oleh kalangan programmer daripada XML. Dari segi sintaks, memang betul JSON lebih mudah dibaca karena penggunaannya lebih singkat dan tidak memerlukan end-tag. Dari segi yang lebih teknis, JSON memungkinkan developer untuk menyimpan apapun dalam suatu array, yang tidak dapat dilakukan pada XML. Karena sintaks-nya yang lebih efisien, JSON juga relatif lebih "ringan" daripada XML yang memerlukan struktur kompleks, menyebabkan ukuran file yang lebih besar. Salah satu perbedaan terbesarnya terletak di parsing pada kedua representasi data. XML harus di-parse menggunakan XML parser, yang dapat memperlambat dan membuat proses relatif lebih rumit. Sementara itu, parsing di JSON cukup menggunakan function standar JavaScript. Ditambah dengan sintaks dan perbedaan ukuran file-nya, JSON biasanya lebih cepat dan efisien.
 
+---
 
-### Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+### 3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
 
 **Jawab:**
 
 blbalbalbal
 
+---
 
-### Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+### 4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
 
 **Jawab:**
 
 halohalo
 
+---
 
-### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
 **Jawab:**
 
