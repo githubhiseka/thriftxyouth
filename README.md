@@ -90,15 +90,13 @@ Data delivery penting bagi suatu web platform karena hampir semua aplikasi memer
 ---
 
 ### 2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
-
-**Jawab:**
-
+**_Jawab:_**
 Saya pribadi lebih menyukai format JSON karena sintaks-nya yang lebih mudah dibaca, apalagi berangkat dengan pengalaman menggunakan bahasa pemrograman Java. Namun, memang terdapat beberapa fakta yang menyebabkan JSON lebih sering digunakan oleh kalangan programmer daripada XML. Dari segi sintaks, memang betul JSON lebih mudah dibaca karena penggunaannya lebih singkat dan tidak memerlukan end-tag. Dari segi yang lebih teknis, JSON memungkinkan developer untuk menyimpan apapun dalam suatu array, yang tidak dapat dilakukan pada XML. Karena sintaks-nya yang lebih efisien, JSON juga relatif lebih "ringan" daripada XML yang memerlukan struktur kompleks, menyebabkan ukuran file yang lebih besar. Salah satu perbedaan terbesarnya terletak di parsing pada kedua representasi data. XML harus di-parse menggunakan XML parser, yang dapat memperlambat dan membuat proses relatif lebih rumit. Sementara itu, parsing di JSON cukup menggunakan function standar JavaScript. Ditambah dengan sintaks dan perbedaan ukuran file-nya, JSON biasanya lebih cepat dan efisien.
 
 ---
 
 ### 3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
-**Jawab:**
+**_Jawab:_**
 Seperti namanya, method is_valid() mem-validasi suatu form pada aplikasi. Secara singkat, is_valid() akan mengecek ketentuan-ketentuan yang di-define pada field suatu form. Misalnya, jawaban pada suatu instansi EmailField(max_length=254) akan divalidasi oleh is_valid() untuk mengecek:
 * Apakah jawaban tersebut tergolong suatu email?
 * Apakah jawaban tersebut melebihi batas maksimal panjang huruf?
@@ -107,17 +105,13 @@ Method is_valid() ini akan me-return suatu value boolean. Apabila True, akan dil
 ---
 
 ### 4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
-
-**Jawab:**
-
+**_Jawab:_**
 halohalo
 
 ---
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-
-**Jawab:**
-
+**_Jawab:_**
 gini loh
 
 ---
