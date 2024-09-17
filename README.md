@@ -109,9 +109,17 @@ Banyak sekali logika yang digunakan untuk mem-validasi data pada form dan sangat
 
 ---
 
-### 4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+### 4. Mengapa kita membutuhkan `csrf_token` saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan `csrf_token` pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
 **_Jawab:_**
+`csrf_token` secara tidak langsung memberikan perlindungan pada aplikasi dengan menjaga para pengguna dengan memberi suatu token random dengan ukuran besar yang juga unik di suatu session agar penyerang tidak dapat mengakses session pengguna sehingga tidak memungkinkan untuk mengambil datanya. Contoh apabila tidak terdapat `csrf_token`:
+* Login ke suatu aplikasi bank
+* Akan melakukan suatu transfer, memberi request ke (dengan url) `http://www.mybank.com/transfer?to=<SomeAccountnumber>&amount=<SomeAmount>`
+* Membuka suatu link berbahaya `www.cute-cat-pictures.org`
+* Apabila pengguna masih _logged in_ pada bank tersebut, pemilik link berbahaya tersebut dapat mengirim request `http://www.mybank.com/transfer?to=123456&amount=10000` yang memberikan uang sebesar 10000 ke penyerang.
 
+Dengan `csrf_token`, url akan dilindungi oleh argumen lain (token), semisal `http://www.mybank.com/transfer?to=123456&amount=10000&token=31415926535897932384626433832795028841971` dimana token tersebut random sehingga hampir mustahil penyerang dapat mengaksesnya.
+
+Source : [](https://stackoverflow.com/questions/5207160/what-is-a-csrf-token-what-is-its-importance-and-how-does-it-work)
 
 ---
 
