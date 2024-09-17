@@ -44,6 +44,7 @@ Routing aplikasi tidak jauh beda dengan routing proyek. Cukup dengan membuat ber
 
 Untuk melakukan deployment aplikasi ke PWS, tambahkan proyek ke dalam PWS terlebih dahulu. Nantinya, akan diberikan credentials dan link yang akan dibutuhkan untuk mengakses proyek Django yang telah dibuat melalui url deployment PWS` (<username-sso>-<namaproyek>.pbp.cs.ui.ac.id)`. Sebelum melanjutkan ke langkah berikutnya, lakukan 4 mantras of git (pull, add, commit, push) terlebih dahulu untuk mengsinkronkan perubahan ke repository. Kemudian, run `git remote add <link proyek dari PWS>` untuk menghubungkan lokal dengan PWS. Setup terakhir yang perlu dilakukan adalah melakukan push ke PWS dengan mengganti nama branch menjadi `master` dengan `git branch -M master` lalu di push melalui `git push pws master` untuk menampilkan perubahan pada proyek ke url PWS. Setelahnya, hanya perlu mengubah nama branch-nya kembali ke `main` dengan `git branch -M main`. Agar web bisa diakses melalui url yang telah dibuat, perlu ditambahkan `ALLOWED_HOSTS = ["localhost", "127.0.0.1", "<URL deployment PWS kamu>"]` pada `ALLOWED_HOSTS` di `settings.py`. Selamat! Web Django sudah bisa diakses.
 
+---
 
 ### 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
 
@@ -51,6 +52,7 @@ Untuk melakukan deployment aplikasi ke PWS, tambahkan proyek ke dalam PWS terleb
 
 ![Django Concept](bagan.png)
 
+---
 
 ### 3. Jelaskan fungsi git dalam pengembangan perangkat lunak!
 
@@ -58,6 +60,7 @@ Untuk melakukan deployment aplikasi ke PWS, tambahkan proyek ke dalam PWS terleb
 
 Git berperan sebagai "manager" kode yang dapat melacak dan menyimpan semua perubahan yang terjadi di dalam file, sehingga mampu untuk balik ke versi sebelum-sebelumnyanya. Git juga memungkinkan kolaborasi antar developer yang serba bisa sehingga menjadi alat yang canggih untuk kerja tim.
 
+---
 
 ### 4. Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?
 
@@ -65,6 +68,7 @@ Git berperan sebagai "manager" kode yang dapat melacak dan menyimpan semua perub
 
 Menurut saya, django cocok untuk beginner utamanya karena Django merupakan framework yang berbasis Python, yang dianggap banyak orang adalah bahasa pemrograman yang paling noob-friendly.
 
+---
 
 ### 5. Mengapa model pada Django disebut sebagai ORM?
 
@@ -72,6 +76,7 @@ Menurut saya, django cocok untuk beginner utamanya karena Django merupakan frame
 
 Model Django dapat disebut sebagai Object Relational Mapping karena `models.py` melacak dan menyimpan banyak objek dengan atributnya masing-masing sehingga bekerja mirip seperti Object Oriented Programming, bedanya model-model ini berperan sebagai database yang dapat mengirim datanya ke `views.py` untuk menampilkan hal-hal sesuai keinginan developer.
 
+---
 
 # Tugas 3
 
@@ -113,3 +118,5 @@ halohalo
 **Jawab:**
 
 gini loh
+
+---
