@@ -47,7 +47,9 @@ Untuk melakukan deployment aplikasi ke PWS, tambahkan proyek ke dalam PWS terleb
 ---
 
 ### 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
+
 **Jawab:**
+
 ![Django Concept](bagan.png)
 
 ---
@@ -98,9 +100,7 @@ Saya pribadi lebih menyukai format JSON karena sintaks-nya yang lebih mudah diba
 ---
 
 ### 3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
-
 **Jawab:**
-
 Seperti namanya, method is_valid() mem-validasi suatu form pada aplikasi. Secara singkat, is_valid() akan mengecek ketentuan-ketentuan yang di-define pada field suatu form. Misalnya, jawaban pada suatu instansi EmailField(max_length=254) akan divalidasi oleh is_valid() untuk mengecek:
 * Apakah jawaban tersebut tergolong suatu email?
 * Apakah jawaban tersebut melebihi batas maksimal panjang huruf?
