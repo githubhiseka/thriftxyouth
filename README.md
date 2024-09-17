@@ -119,7 +119,7 @@ Banyak sekali logika yang digunakan untuk mem-validasi data pada form dan sangat
 
 Dengan `csrf_token`, url akan dilindungi oleh argumen lain (token), semisal `http://www.mybank.com/transfer?to=123456&amount=10000&token=31415926535897932384626433832795028841971` dimana token tersebut random sehingga hampir mustahil penyerang dapat mengaksesnya.
 
-Source : [](https://stackoverflow.com/questions/5207160/what-is-a-csrf-token-what-is-its-importance-and-how-does-it-work)
+Source : <https://stackoverflow.com/questions/5207160/what-is-a-csrf-token-what-is-its-importance-and-how-does-it-work>
 
 ---
 
