@@ -78,6 +78,8 @@ Model Django dapat disebut sebagai Object Relational Mapping karena `models.py` 
 
 ---
 
+---
+
 # Tugas 3
 
 
