@@ -76,7 +76,7 @@ Model Django dapat disebut sebagai Object Relational Mapping karena `models.py` 
 # Tugas 3
 
 
-- [x] <h3>Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?</h3>
+- [x] ### Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 
 **Jawab:**
 
