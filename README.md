@@ -128,3 +128,9 @@ Source : <https://stackoverflow.com/questions/5207160/what-is-a-csrf-token-what-
 gini loh
 
 ---
+
+### _Screenshots_
+![XML](xml.jpg)
+![json](json.jpg)
+![XML by ID](xml_id.jpg)
+![json by ID](json_id.jpg)
