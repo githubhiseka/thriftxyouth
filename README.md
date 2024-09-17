@@ -47,9 +47,7 @@ Untuk melakukan deployment aplikasi ke PWS, tambahkan proyek ke dalam PWS terleb
 ---
 
 ### 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
-
 **Jawab:**
-
 ![Django Concept](bagan.png)
 
 ---
