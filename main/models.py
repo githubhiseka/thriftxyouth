@@ -7,6 +7,7 @@ class Product(models.Model):
 	price = models.IntegerField()
 	description = models.TextField()
 
+# untuk demo tugas 2
 class Person(models.Model):
 	name = models.CharField(max_length=255)
 	age = models.IntegerField()

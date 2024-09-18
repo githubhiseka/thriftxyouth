@@ -91,7 +91,11 @@ Data delivery penting bagi suatu web platform karena hampir semua aplikasi memer
 
 ### 2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
 **_Jawab:_**
-Saya pribadi lebih menyukai format JSON karena sintaks-nya yang lebih mudah dibaca, apalagi berangkat dengan pengalaman menggunakan bahasa pemrograman Java. Namun, memang terdapat beberapa fakta yang menyebabkan JSON lebih sering digunakan oleh kalangan programmer daripada XML. Dari segi sintaks, memang betul JSON lebih mudah dibaca karena penggunaannya lebih singkat dan tidak memerlukan end-tag. Dari segi yang lebih teknis, JSON memungkinkan developer untuk menyimpan apapun dalam suatu array, yang tidak dapat dilakukan pada XML. Karena sintaks-nya yang lebih efisien, JSON juga relatif lebih "ringan" daripada XML yang memerlukan struktur kompleks, menyebabkan ukuran file yang lebih besar. Salah satu perbedaan terbesarnya terletak di parsing pada kedua representasi data. XML harus di-parse menggunakan XML parser, yang dapat memperlambat dan membuat proses relatif lebih rumit. Sementara itu, parsing di JSON cukup menggunakan function standar JavaScript. Ditambah dengan sintaks dan perbedaan ukuran file-nya, JSON biasanya lebih cepat dan efisien.
+Saya pribadi lebih menyukai format JSON karena sintaks-nya yang lebih mudah dibaca, apalagi berangkat dengan pengalaman menggunakan bahasa pemrograman Java. Namun, memang terdapat beberapa fakta yang menyebabkan JSON lebih sering digunakan oleh kalangan programmer daripada XML:
+* Dari segi sintaks, memang betul JSON lebih mudah dibaca karena penggunaannya lebih singkat dan tidak memerlukan end-tag.
+* Dari segi yang lebih teknis, JSON memungkinkan developer untuk menyimpan apapun dalam suatu array, yang tidak dapat dilakukan pada XML.
+* Karena sintaks-nya yang lebih efisien, JSON juga relatif lebih "ringan" daripada XML yang memerlukan struktur kompleks, menyebabkan ukuran file yang lebih besar.
+* Salah satu perbedaan terbesarnya terletak di parsing pada kedua representasi data. XML harus di-parse menggunakan XML parser, yang dapat memperlambat dan membuat proses relatif lebih rumit. Sementara itu, parsing di JSON cukup menggunakan function standar JavaScript. Ditambah dengan sintaks dan perbedaan ukuran file-nya, JSON biasanya lebih cepat dan efisien.
 
 ---
 
@@ -125,7 +129,52 @@ Source : <https://stackoverflow.com/questions/5207160/what-is-a-csrf-token-what-
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 **_Jawab:_**
-gini loh
+* Untuk membuat input form untuk menambahkan objek model, pertama-tama dan yang paling utama adalah membuat modelnya itu sendiri di dalam `models.py`, yang di tugas ini berupa:
+    ```
+    class Product(models.Model):
+        id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+        name = models.CharField(max_length=255)
+        price = models.IntegerField()
+        description = models.TextField()
+    ```
+    Model bernama `Product` dan memiliki atribut `name`, `price`, dan `description`.
+
+    Model dan atributnya akan di-_pass_ ke `forms.py` seperti berikut:
+    ```
+    class ProductForm(ModelForm):
+        class Meta:
+            model = Product
+            fields = ["name", "price", "description"]
+    ```
+    Class `Meta` bertugas untuk memberikan metadata dari form yang dimaksud, model yang digunakan adalah model yang telah dibuat tadi, dan `fields` berisi atribut-atribut dari model tersebut.
+
+* Melihat data dengan format tertentu tanpa filtering dapat dilakukan dengan:
+    ```
+    def [function_name](request):
+        data = [model_name].objects.all()
+        return HttpResponse(serializers.serialize("[format_name]", data), content_type="application/[format_name]")
+    ```
+    Function menerima parameter `request` agar dapat mengirim request ke server. Di dalamnya, diambil semua data objek dari model yang digunakan dan di-_assign_ ke suatu variabel.
+
+    Setelahnya akan diproses oleh HttpResponse yang memberikan response berupa HTTP dengan format [format_name]. 
+
+* Melihat data dengan format tertentu dengan filter by ID:
+    ```
+    def [function_name](request, id):
+        data = [model_name].objects.filter(pk=id)
+        return HttpResponse(serializers.serialize("[format_name]", data), content_type="application/[format_name]")
+    ```
+    Cukup mirip dengan sebelumnya, bedanya hanya ada argumen baru dan tambahkan `.filter(pk=id)` pada data yang disimpan.
+
+* Routing URL untuk fungsi `views.py` memiliki format sebagai berikut:
+    ```
+    path('[defined_path]', [function_name], name='[just make it the same as function name]'),
+    ```
+    Apabila menggunakan filtering by ID, maka hanya perlu diubah sedikit menjadi:
+    ```
+    path('[defined_path]/<str:id>', [function_name], name='[just make it the same as function name]'),
+    ```
+    Routing seperti ini akan mengirim request apabila `[defined_path]` dikunjungi, lalu memanggil `[function_name]` yang akan menampilkan data yang sesuai berdasarkan format yang digunakan.
 
 ---
 
