@@ -183,3 +183,33 @@ Source : <https://stackoverflow.com/questions/5207160/what-is-a-csrf-token-what-
 ![json](json.jpg)
 ![XML by ID](xml_id.jpg)
 ![json by ID](json_id.jpg)
+
+---
+
+---
+
+# Tugas 4
+
+### 1. Apa perbedaan antara `HttpResponseRedirect()` dan `redirect()`?
+**_Jawab:_**
+`HttpResponseRedirect()` hanya dapat menerima argumen berupa url pada parameter pertamanya, sedangkan `redirect()` dapat menerima argumen berupa model, view, ataupun url untuk parameter pertamanya.
+
+---
+
+### 2. Jelaskan cara kerja penghubungan model Product dengan User!
+**_Jawab:_**
+Menghubungkan model dengan model lainnya menggunakan _foreign key_. Dalam basis data, direpresentasikan sebagai sambungan antara dua tabel berbeda yang menunjuk ke _primary key_-nya. Untuk melakukannya, pertama-tama lakukan import User:
+```
+from django.contrib.auth.models import User
+```
+Lalu, hubungkan suatu instansi `Product` dengan `User` dengan membuat variabel seperti berikut dalam modelnya.
+```
+class Product(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ...
+```
+
+---
+
+### 3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+**_Jawab:_**
