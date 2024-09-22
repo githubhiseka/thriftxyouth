@@ -211,5 +211,23 @@ class Product(models.Model):
 
 ---
 
-### 3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+### 3. Apa perbedaan antara _authentication_ dan _authorization_, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+**_Jawab:_**
+Secara singkat, _authentication_ memverifikasi identitas seorang _user_ (seperti mengecek _username_ dan _password_), sedangkan _authorization_ dilakukan setelah _authentication_ dan berfungsi menentukan apa saja yang boleh diakses oleh seorang _user_ di dalam sebuah sistem. 
+* Django meng-_authenticate_ dengan mengecek validitas _username_ dan _password_.
+* Setelah selesai autentikasi, Django akan _autherize_ dengan mengecek apakah _user_ memiliki akses untuk melakukan tindakan-tindakan spesifik melalui method `.has_perm()`
+
+---
+
+### 4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+**_Jawab:_**
+Caranya adalah dengan _holding state_ menggunakan _session ID_ berupa semacam token akses yang disimpan sebagai cookie pada _browser_. Cookie inilah yang akan menyimpan status login pengguna sehingga Django dapat mengingatnya selama _browsing_.
+* Cookies dapat juga digunakan untuk melihat kebiasaan dan preferensi pengguna dalam _browsing_ sehingga _developer_ dapat menyesuaikannya dengan merekomendasikan konten yang relevan.
+* Cookies juga dapat mengurangi beban server dengan menyimpan informasi di komputer pengguna, alhasil membuat web lebih cepat dan efisien.
+
+Namun, tidak semua cookies aman digunakan karena sifatnya yang dapat melakukan _tracking_ dan koleksi data. Walaupun tidak sampai level password atau informasi sensitif, data yang dikumpulkan tetap rentan disalahgunakan.
+
+---
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 **_Jawab:_**

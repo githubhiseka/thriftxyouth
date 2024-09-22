@@ -11,7 +11,7 @@
 <h5>Class:</h5>
 <p>{{ class }}</p>
 
-{% if not mood_entries %}
+{% if not product_entries %}
 <p>Belum ada data product.</p>
 {% else %}
 <table>
@@ -42,4 +42,6 @@
 <a href="{% url 'main:logout' %}">
     <button>Logout</button>
 </a>
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
 {% endblock content %}

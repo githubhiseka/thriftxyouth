@@ -1,22 +1,25 @@
+import datetime
 from django.shortcuts import render, redirect
 from main.models import Product
 from main.forms import ProductForm
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 @login_required(login_url='/login')
 def show_main(request):
-    product_entries = Product.objects.all()
+    product_entries = Product.objects.filter(user=request.user)
     context = {
         'app_name': 'THRIFTxYouth',
-        'name': 'Abhiseka Susanto',
+        'name': request.user.username,
         'class': 'C',
         'npm': '2306244942',
-        'product_entries': product_entries
+        'product_entries': product_entries,
+        'last_login': request.COOKIES['last_login'],
     }
     return render(request, "main.html", context)
 
@@ -24,7 +27,9 @@ def create_product_entry(request):
     form = ProductForm(request.POST or None)
 
     if form.is_valid() and request.method == "POST":
-        form.save()
+        mood_entry = form.save(commit=False)
+        mood_entry.user = request.user
+        mood_entry.save()
         return redirect('main:show_main')
 
     context = {'form': form}
@@ -65,7 +70,9 @@ def login_user(request):
         if form.is_valid():
                 user = form.get_user()
                 login(request, user)
-                return redirect('main:show_main')
+                response = HttpResponseRedirect(reverse("main:show_main"))
+                response.set_cookie('last_login', str(datetime.datetime.now()))
+                return response
 
     else:
         form = AuthenticationForm(request)
@@ -74,4 +81,6 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('main:login')
+    response = HttpResponseRedirect(reverse('main:login'))
+    response.delete_cookie('last_login')
+    return response
