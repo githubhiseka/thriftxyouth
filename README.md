@@ -231,3 +231,19 @@ Namun, tidak semua cookies aman digunakan karena sifatnya yang dapat melakukan _
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 **_Jawab:_**
+* Fungsi `register` memerlukan import `UserCreationForm` yang akan membuat form registrasi simpel yang berisi input _username_, _password_, konfirmasi _password_ dengan penjaminan keamanan melalui _hashing password_ lalu disimpan dalam database.
+    * form.is_valid() digunakan untuk mengecek kebenaran dari tiap input pada field bersangkutan
+    * form.save() berfungsi untuk menyimpan data input pada form
+    * messages.success() sebagai pesan konfirmasi
+    * redirect() yang dikembalikan digunakan untuk pindah ke url login
+
+* Fungsi `login_user` menggunakan _method_ `authenticate()` dan import `AuthenticationForm` yang akan membuat form login simpel dengan validasi dan autentikasi input. Metode-metode yang digunakan cukup mirip dengan fungsi `register`, bedanya terdapat pada:
+    * `login(request, user)` digunakan untuk melakukan login
+    * Apabila valid, akan di-_request_ session untuk _user_
+
+* Fungsi `logout_user` dibuat singkat dengan menggunakan `logout(request)` yang akan men-_terminate_ sesi pengguna lalu _redirect_ ke url login kembali
+
+* _Last but not least_, setelah membuat fungsi-fungsi tersebut, jangan lupa untuk menambahkan url fungsi ke dalam `urls.py`
+
+---
+
