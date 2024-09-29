@@ -247,3 +247,73 @@ Namun, tidak semua cookies aman digunakan karena sifatnya yang dapat melakukan _
 
 ---
 
+---
+
+# Tugas 5
+
+### 1. Jika terdapat beberapa CSS _selector_ untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS _selector_ tersebut!
+**_Jawab:_**
+Jika bicara tentang hierarki _selector_ CSS, dapat direpresentasikan dengan _specificity value_-nya masing-masing _selector_:
+* Inline styles, e.g. `<h1 style="color: pink;">` -- memiliki prioritas _selector_ tertinggi dengan nilai _specificity_ 1000
+* ID _selector_, e.g. `#navbar` -- memiliki nilai kekhususan 100 sehingga menempatkannya di posisi kedua tertinggi dalam hierarki _selector_
+* Classes, pseudo-classes, attribute _selector_s; e.g. `.test, :hover, [href]` -- tiga _selector_ ini mempunyai kekhususan yang sama dengan nilai _specificity_ 10
+* Elements, pseudo-elements; e.g. `h1, ::before` -- menyandang prioritas terendah dari semua _selector_ yang disebutkan dengan nilai kekhususan 1
+
+Perlu dicatat bahwa terdapat pengecualian untuk penggunaan `!important` di _value_ properti. `!important` akan mendahului semua selector, bahkan inline styles.
+
+_Source:_ https://www.w3schools.com/css/css_specificity.asp
+
+---
+
+### 2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan _responsive design_!
+**_Jawab:_**
+Teknologi semakin canggih dan perangkat pun makin unik. Bagaimana mengakomodasi ukuran tampilan web dengan perangkat-perangkat ini? Konsep _responsive design_ menangkal permasalahan ini dengan menyusun strategi desain sedemikian hingga tampilan web dapat selalu menyesuaikan dengan ukuran perangkat yang digunakan pengguna.
+
+Contoh aplikasi yang sudah menerapkan _responsive design_: **Website PWS**
+
+Contoh aplikasi yang belum menerapkan _responsive design_: **SIAKNG**
+
+---
+
+### 3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+**_Jawab:_**
+* Margin adalah spasi tambahan di luar border suatu konten
+* Border terletak di luar padding dan konten, namun masih di dalam margin
+* Padding merupakan spasi yang mengelilingi konten secara langsung dan terletak di dalam border
+
+Ilustrasi:
+![margin_border_padding](https://www.hubspot.com/hs-fs/hubfs/Update%20css%20margin%20vs%20padding-5%20.webp?width=650&height=470&name=Update%20css%20margin%20vs%20padding-5%20.webp)
+
+_Courtesy of https://blog.hubspot.com/website/css-margin-vs-padding_
+
+Contoh implementasinya seperti berikut.
+```
+.element {
+  margin: 20px;             /* 20px margin di semua sisi */
+  margin-top: 5px           /* 5px margin hanya untuk sisi atas */
+                            /* dapat berlaku untuk sisi lainnya */
+
+  /* menganut konsep yang sama */
+  border: 2px solid #000;       /* 2px border solid berwarna hitam */
+  border-left: 5px dashed red   /* 5px border bergaris putus-putus di kiri*/
+
+  padding: 10px;                /* 10px padding di semua sisi */
+  /* etc */
+}
+```
+
+### 4. Jelaskan konsep flex box dan grid _layout_ beserta kegunaannya!
+**_Jawab:_**
+Perbedaan utamanya terletak pada _layout_ flexbox yang berbentuk satu dimensi/arah, sementara grid bekerja seperti tabel (memiliki dua dimensi). Walaupun grid terkesan lebih fleksibel, terkadang lebih praktis untuk menggunakan flex.
+* Flexbox sangat bagus dalam mengatur perataan tiap elemen sehingga lebih menguntungkan untuk desain-desain simpel, seperti _navbar_.
+* CSS Grid lebih baik untuk _layout_ yang menggunakan desain kolom dan baris, seperti _bento box_.
+
+Ilustrasi:
+![flexbox_vs_grid](https://i0.wp.com/blog.nashtechglobal.com/wp-content/uploads/2023/09/download-1-3.png?fit=1024%2C538&ssl=1)
+
+_Courtesy of_ https://blog.nashtechglobal.com/css-grid-vs-flexbox/
+
+---
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+**_Jawab:_**
