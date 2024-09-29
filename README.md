@@ -247,6 +247,11 @@ Namun, tidak semua cookies aman digunakan karena sifatnya yang dapat melakukan _
 
 ---
 
+* Membuat dummy data `Product` untuk dua akun berkaitan dengan soal berikutnya, yakni menghubungkan model dengan `User`. Cara menghubungkan model dengan `User` sudah dijelaskan pada nomor sebelumnya. Untuk membuat akun dan _dummy_ data di lokal, perlu run `python manage.py runserver` terlebih dahulu lalu kunjungi http://localhost:8000/ kemudian ikuti langkah-langkah berikut.
+    * Membuat akun cukup _straight forward_, hanya perlu melakukan registrasi melalui halaman login, lalu isi _credentials_ yang diperlukan seperti _username_ dan _password_.
+    * Untuk membuat data `Product`, login terlebih dahulu lalu pencet tombol "Add new product". Setelahnya akan muncul halaman baru dengan input nama, harga, dan deskripsi produk. Isi ketiga _field_ tersebut lalu pencet tombol "Add product" untuk meng-_submit_ data yang diinput.
+
+---
 ---
 
 # Tugas 5
@@ -317,3 +322,8 @@ _Courtesy of_ https://blog.nashtechglobal.com/css-grid-vs-flexbox/
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 **_Jawab:_**
+
+* Menambahkan fungsionalitas _last login_ bermula dari mengembalikan _response_ untuk _cookie_ melalui `response.set_cookie('last_login', str(datetime.datetime.now()))` pada `login_user` jika formnya ditentukan valid, yang akan mengembalikan suatu string berisi _timestamp_ dan dinamakan sebagai 'last_login'.
+* Pada `main > view.py > show_main` tambahkan `'last_login': request.COOKIES['last_login']` pada dictionary `context` untuk melakukan _request_ untuk _cookies_ yang telah dibuat sebelumnya agar dapat disimpan dan ditampilkan nanti.
+* Pada `main.html` hanya perlu tampilkan informasi _last login_ dengan menulis `{{ last_login }}` pada kodenya.
+* Untuk menampilkan detail _user_ yang sedang _logged in_, cukup mengubah key `name` pada dictionary `context` di `main > view.py > show_main` menjadi `request.user.username` yang akan meminta _username_ untuk suatu _user_ tertenu. Lalu, tampilkan saja di `main.html`.
