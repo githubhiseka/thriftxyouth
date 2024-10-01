@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>{{ app_name }}</h1>
+{% include 'navbar.html' %}
+{% comment %} <h1>{{ app_name }}</h1> {% endcomment %}
 
 <h5>NPM: </h5>
 <p>{{ npm }}<p>
@@ -28,6 +29,20 @@
         <td>{{product_entry.name}}</td>
         <td>{{product_entry.price}}</td>
         <td>{{product_entry.description}}</td>
+        <td>
+            <a href="{% url 'main:edit_product' product_entry.pk %}">
+                <button>
+                    Edit
+                </button>
+            </a>
+        </td>
+        <td>
+            <a href="{% url 'main:delete_product' product_entry.pk %}">
+                <button>
+                    Delete
+                </button>
+            </a>
+        </td>
     </tr>
     {% endfor %}
 </table>

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block meta %}
-<title>Create Product</title>
+<title>Edit Product</title>
 {% endblock meta %}
 
 {% block content %}
@@ -12,7 +12,7 @@
     <div class="container mx-auto px-4 py-8 mt-16 max-w-xl">
         <div class="bg-white rounded-2xl shadow-lg p-8">
             <div class="bg-gray-800 rounded-xl p-6">
-                <h1 class="text-3xl font-bold text-center mb-8 text-white">Add Product</h1>
+                <h1 class="text-3xl font-bold text-center mb-8 text-white">Edit Product</h1>
 
                 <form method="POST" class="space-y-6">
                     {% csrf_token %}
@@ -34,7 +34,7 @@
                     {% endfor %}
                     <div class="flex justify-center mt-6">
                         <button type="submit" class="bg-red-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out w-full">
-                            Add Product
+                            Edit Product
                         </button>
                     </div>
                 </form>
@@ -42,5 +42,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

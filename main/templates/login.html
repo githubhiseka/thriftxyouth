@@ -5,28 +5,51 @@
 {% endblock meta %}
 
 {% block content %}
-<div class="login">
-    <h1>Login</h1>
+<div class="w-full min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="bg-gray-800 rounded-xl p-6">
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-white">
+                    Welcome back!
+                </h2>
+                <form class="mt-8 space-y-6" method="POST" action="">
+                    {% csrf_token %}
+                    <div class="rounded-md shadow-sm -space-y-px">
+                        {% for field in form %}
+                            <div class="{% if not forloop.first %}mt-4{% endif %}">
+                                <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-white">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                    </div>
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td><input class="btn login_btn" type="submit" value="Login" /></td>
-        </tr>
-        </table>
-    </form>
+                    <div>
+                        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
 
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %} Don't have an account yet?
-    <a href="{% url 'main:register' %}">Register Now</a>
+            {% if messages %}
+                <div class="mt-4">
+                    {% for message in messages %}
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            <span class="block sm:inline">{{ message }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="text-center mt-4">
+                <p class="text-sm text-gray-600">
+                    Don't have an account yet?
+                    <a href="{% url 'main:register' %}" class="font-medium text-red-600 hover:text-red-500">
+                        Register Now
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock content %}
