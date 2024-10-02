@@ -1,62 +1,50 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>THRIFTxYouth</title>
+{% endblock meta %}
+
 {% block content %}
 {% include 'navbar.html' %}
-{% comment %} <h1>{{ app_name }}</h1> {% endcomment %}
+<div class="overflow-x-hidden px-4 md:px-8 bg-gray-100 flex flex-col">
+    <!-- <div class="p-2 mb-6 relative">
+        <div class="relative grid grid-cols-1 z-30 md:grid-cols-3 gap-8">
+            {% include "card_info.html" with title='NPM' value=npm %}
+            {% include "card_info.html" with title='Name' value=name %}
+            {% include "card_info.html" with title='Class' value=class %}
+        </div>
+        <div class="w-full px-6 absolute top-[44px] left-0 z-20 hidden md:flex">
+            <div class="w-full min-h-4 bg-indigo-700"></div>
+        </div>
+        <div class="h-full w-full py-6 absolute top-0 left-0 z-20 md:hidden flex">
+            <div class="h-full min-w-4 bg-indigo-700 mx-auto"></div>
+        </div>
+    </div> -->
 
-<h5>NPM: </h5>
-<p>{{ npm }}<p>
+    <!-- <div class="px-3 mb-4">
+        <div class="flex rounded-md items-center bg-indigo-600 py-2 px-4 w-fit">
+            <h1 class="text-white text-center">Last Login: {{last_login}}</h1>
+        </div>
+    </div> -->
 
-<h5>Name:</h5>
-<p>{{ name }}</p>
+    <div class="flex justify-center my-6">
+        <a href="{% url 'main:create_product_entry' %}" class="bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+            Add New Product
+        </a>
+    </div>
 
-<h5>Class:</h5>
-<p>{{ class }}</p>
-
-{% if not product_entries %}
-<p>Belum ada data product.</p>
-{% else %}
-<table>
-    <tr>
-        <th>Product Name</th>
-        <th>Price</th>
-        <th>Description</th>
-    </tr>
-
-    {% comment %} Berikut cara memperlihatkan data mood di bawah baris ini 
-    {% endcomment %} 
-    {% for product_entry in product_entries %}
-    <tr>
-        <td>{{product_entry.name}}</td>
-        <td>{{product_entry.price}}</td>
-        <td>{{product_entry.description}}</td>
-        <td>
-            <a href="{% url 'main:edit_product' product_entry.pk %}">
-                <button>
-                    Edit
-                </button>
-            </a>
-        </td>
-        <td>
-            <a href="{% url 'main:delete_product' product_entry.pk %}">
-                <button>
-                    Delete
-                </button>
-            </a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-{% endif %}
-
-<br />
-
-<a href="{% url 'main:create_product_entry' %}">
-    <button>Add New Product</button>
-</a>
-
-<a href="{% url 'main:logout' %}">
-    <button>Logout</button>
-</a>
-
-<h5>Sesi terakhir login: {{ last_login }}</h5>
+    {% if not product_entries %}
+        <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#6B7280"><path d="M240-80v-170q-36-16-65.5-43T124-355.5Q103-391 91.5-433T80-520q0-158 112-259t288-101q176 0 288 101t112 259q0 45-11.5 87T836-355.5Q815-320 785.5-293T720-250v170H240Zm60-60h70v-100h60v100h100v-100h60v100h70v-147q37-11 66.5-33t50.5-52.5q21-30.5 32-68.02 11-37.52 11-79.33 0-133.99-94-217.07Q632-820 480.04-820q-151.95 0-246 83.09Q140-653.82 140-519.81q0 41.81 11 79.31t32 68q21 30.5 50.5 52.5t66.5 33v147Zm120-220h120l-60-120-60 120Zm-79.91-100q28.91 0 49.41-20.59 20.5-20.59 20.5-49.5t-20.59-49.41q-20.59-20.5-49.5-20.5t-49.41 20.59q-20.5 20.59-20.5 49.5t20.59 49.41q20.59 20.5 49.5 20.5Zm280 0q28.91 0 49.41-20.59 20.5-20.59 20.5-49.5t-20.59-49.41q-20.59-20.5-49.5-20.5t-49.41 20.59q-20.5 20.59-20.5 49.5t20.59 49.41q20.59 20.5 49.5 20.5ZM480-140Z"/></svg>
+            <p class="text-center text-gray-600 mt-4">Belum ada data product.</p>
+        </div>
+    {% else %}
+        <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full">
+            {% for product_entry in product_entries %}
+                {% include 'card_product.html' with product_entry=product_entry %}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 {% endblock content %}

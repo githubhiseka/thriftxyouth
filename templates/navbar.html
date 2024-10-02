@@ -1,10 +1,10 @@
 <nav class="bg-[#22272e] shadow-lg sticky top-0 left-0 z-40 w-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-            <div class="flex items-center">
-                <h1 class="text-2xl font-bold text-center text-white relative">THRIFTxYouth</h1>
+            <div class="flex items-center mx-auto">
+                <h1 class="text-2xl font-bold text-center text-white relative">THRIFT<span class="text-red-500">x</span>Youth</h1>
             </div>
-            <div class="hidden md:flex items-center">
+            <div class="hidden md:flex items-center absolute right-0">
                 {% if user.is_authenticated %}
                     <span class="text-gray-300 mr-4">{{ user.username }}</span>
                     <a href="{% url 'main:logout' %}" class="text-center text-white font-bold py-2 px-4 transition duration-300">
