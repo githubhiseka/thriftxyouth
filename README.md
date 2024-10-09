@@ -330,3 +330,19 @@ _Courtesy of_ https://blog.nashtechglobal.com/css-grid-vs-flexbox/
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 **_Jawab:_**
+* Buat fungsi-fungsi yang dibutuhkan, seperti edit dan delete
+* Buatkan web jadi responsive dengan tambahkan `<meta name="viewport">` pada `base.html`
+* Pasangkan Tailwind pada Django
+* Tambahkan navbar dan tautkan ke file-file html lainnya
+* Tambahkan _middleware_ pada `settings.py`
+* Tambahkan _static files_ dengan:
+```
+    STATIC_URL = '/static/'
+if DEBUG:
+    STATICFILES_DIRS = [
+        BASE_DIR / 'static' # merujuk ke /static root project pada mode development
+    ]
+else:
+    STATIC_ROOT = BASE_DIR / 'static'
+```
+* Tambahkan `global.css`  agar styling dapat dilakukan.
