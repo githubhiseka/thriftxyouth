@@ -346,3 +346,105 @@ else:
     STATIC_ROOT = BASE_DIR / 'static'
 ```
 * Tambahkan `global.css`  agar styling dapat dilakukan.
+
+---
+
+---
+
+# Tugas 6
+
+### 1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+**_Jawab:_**
+JavaScript memungkinkan para pengembang web untuk mengimplementasi fitur-fitur kompleks, seperti _update_ konten secara _real-time_, validasi forms, menampilkan elemen secara interaktif, animasi, dan lain-lain.
+
+---
+
+### 2. Jelaskan fungsi dari penggunaan `await` ketika kita menggunakan `fetch()`! Apa yang akan terjadi jika kita tidak menggunakan `await`?
+**_Jawab:_**
+Sederhananya, `await` menunggu data yang diambil melalui `fetch()` agar selesai diterima oleh sisi _client_ untuk diakses nantinya. Tanpanya, dapat terjadi error karena _client_ dapat mencoba untuk mengakses data yang aslinya "belum ada" karena tidak ada fungsi untuk menunggu data sampai ke sisi _client_.
+
+---
+
+### 3. Mengapa kita perlu menggunakan _decorator_ `csrf_exempt` pada view yang akan digunakan untuk AJAX POST?
+**_Jawab:_**
+Untuk tugas ini, `csrf_exempt` dibutuhkan untuk menampilkan AJAX yang memang tidak menggunakan token CSRF. Namun, sebaiknya _decorator_ ini digunakan hanya untuk kasus-kasus tertentu.
+
+---
+
+### 4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (_backend_) juga. Mengapa hal tersebut tidak dilakukan di _frontend_ saja?
+**_Jawab:_**
+Apabila hanya dilakukan di _frontend_, pengguna dengan niat jahat dapat memanipulasi data yang terdapat di web bahkan melalui _developer tools_ yang tersedia di hampir setiap _browser_, sehingga tidak disarankan untuk membersihkan data melalui _frontend_ dengan alasan keamanan.
+
+---
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+**_Jawab:_**
+* Untuk mengambil data produk, digunakan _function_ ini:
+    ```
+    async function getProductEntries(){
+        return fetch("{% url 'main:show_json' %}").then((res) => res.json())
+    }
+    ```
+    Data yang diambil pasti merupakan data dari pengguna yang sudah _logged in_ karena terdapat validasi di _view_ `login_user` dengan menambahkan kondisi baru:
+    ```
+    ...
+    else:
+        messages.error(request, "Invalid username or password. Please try again.")
+    ...
+    ```
+
+* Tombol untuk membuka modal form pengisian data dilakukan dengan menambahkan elemen HTML ke dalam halamannya seperti berikut.
+    ```
+    <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="btn bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();">
+        Add New Product by AJAX
+    </button>
+    ```
+    * Catat bahwa fungsi `onclick="showModal();"` diimplementasikan agar halaman dapat memunculkan modal form ketika tombol ini dipencet.
+    * _Input_ form langsung dibersihkan setelah pengisian form melalui `document.getElementById("productForm").reset(); `
+    * #ASUMSI Error saat penambahan produk dapat terjadi apabila terdapat _field_ yang masih kosong namun dicoba untuk _submit_. Hal tersebut sudah di-_handle_ dengan atribut `required` pada tiap-tiap _field input_
+
+* _View_ untuk menambahkan produk baru dilakukan dengan:
+    ```
+    name = strip_tags(request.POST.get("name"))
+    price = request.POST.get("price")
+    description = strip_tags(request.POST.get("description"))
+    user = request.user
+
+    new_product = Product(
+        name=name,
+        price=price,
+        description=description,
+        user=user
+    )
+    new_product.save()
+
+    return HttpResponse(b"CREATED", status=201)
+    ```
+    * `strip_tags` digunakan untuk menghilangkan _tag_ apabila input form berupa elemen HTML, untuk mengamankan dari serangan XSS.
+    * Setiap variabel yang di-_assign_ akan di `POST` untuk mengirimkan data ke server
+    * Lalu, kirimkan response HTTP untuk menandakan pengiriman data sukses.
+
+* Sambungkan _view_ tersebut dengan routing URL dengan menambahkan:
+    ```
+    ...
+    path('create-ajax', add_product_entry_ajax,name='add_product_entry_ajax'),
+    ...
+    ```
+    ke dalam `urls.py`.
+
+* Form dalam modal dapat dihubungkan dengan _fetching_ pada script melalui:
+    ```
+    ...
+    fetch("{% url 'main:add_product_entry_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#productForm')),
+    })
+    ...
+    ```
+    dalam _function_ `addProductEntry()`.
+
+* Masih pada _function_ yang sama, tambahkan:
+    ```
+    .then(response => refreshProductEntries());
+    ```
+    setelah blok kode yang dicantumkan di poin sebelum ini, agar halaman di-_refresh_ secara asinkronus agar data produk dapat ditampilkan.
