@@ -1,5 +1,5 @@
 import datetime
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reversed
 from main.models import Product
 from main.forms import ProductForm
 from django.http import HttpResponse, HttpResponseRedirect
